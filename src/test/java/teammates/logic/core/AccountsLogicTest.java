@@ -1,9 +1,14 @@
 package teammates.logic.core;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.lang.reflect.InvocationTargetException;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
+import org.mockito.Mockito;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -19,6 +24,10 @@ import teammates.common.util.StringHelper;
 import teammates.storage.api.AccountsDb;
 import teammates.storage.sqlentity.Account;
 import teammates.test.AssertHelper;
+import java.lang.reflect.Method;
+import java.lang.reflect.Field;
+
+
 
 /**
  * SUT: {@link AccountsLogic}.
@@ -496,4 +505,36 @@ public class AccountsLogicTest extends BaseLogicTest {
 
         assertEquals("Trying to mark an expired notification as read.", ipe.getMessage());
     }
+    @Test
+        public void testValidateInstructorJoinRequest_instructorNotFound() throws Exception {
+        // Arrange
+        AccountsLogic accountsLogic = AccountsLogic.inst();
+
+        // Mock InstructorsLogic
+        InstructorsLogic instructorsLogicMock = Mockito.mock(InstructorsLogic.class);
+        Mockito.when(instructorsLogicMock.getInstructorForRegistrationKey("invalidKey")).thenReturn(null);
+
+        // Inject mock into private field instructorsLogic
+        Field instructorsLogicField = AccountsLogic.class.getDeclaredField("instructorsLogic");
+        instructorsLogicField.setAccessible(true);
+        instructorsLogicField.set(accountsLogic, instructorsLogicMock);
+
+        // Access private method validateInstructorJoinRequest
+        Method method = AccountsLogic.class.getDeclaredMethod(
+                "validateInstructorJoinRequest", String.class, String.class);
+        method.setAccessible(true);
+
+        // Act & Assert
+        assertThrows(EntityDoesNotExistException.class, () -> {
+                try {
+                method.invoke(accountsLogic, "invalidKey", "test.google");
+                } catch (InvocationTargetException e) {
+                throw e.getCause();
+                }
+        });
+        }
+
+      
+
+
 }
