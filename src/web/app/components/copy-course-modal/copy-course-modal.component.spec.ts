@@ -314,4 +314,29 @@ describe('CopyCourseModalComponent', () => {
     expect(component.selectedFeedbackSessions.size).toBe(0);
     expect(emittedCourseId).toEqual('testId1');
   });
+
+  
+  it('should display required error if newCourseId is empty and touched (TDD RED)', () => {
+    // Arrange: Ensure that the fields are empty.
+    component.newCourseId = ''; 
+    component.newCourseName = 'ValidName'; 
+    fixture.detectChanges();
+
+    // Act: Simulate the field being "touched" to trigger validation.
+    const courseIdInput = fixture.debugElement.query(By.css('#copy-course-id')).nativeElement;
+    
+    // Simulate the 'blur' event.
+    courseIdInput.dispatchEvent(new Event('blur')); 
+    fixture.detectChanges();
+
+    
+    // The test should FAIL (because requiredErrorElement will be null)
+    const requiredErrorElement = fixture.debugElement.query(By.css('.text-danger'));
+    
+    // The test checks if the element is *not* null (EXPECTED: PASS, ACTUAL: FAIL)
+    expect(requiredErrorElement).not.toBeNull(); 
+  });
+
 });
+
+

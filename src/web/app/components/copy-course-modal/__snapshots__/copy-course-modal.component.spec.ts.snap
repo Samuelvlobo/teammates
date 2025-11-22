@@ -61,10 +61,11 @@ exports[`CopyCourseModalComponent should snap when copying from other sessions 1
             Course ID:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-id"
             maxlength="64"
             placeholder="e.g. CS3215-2013Semester1"
+            required=""
             type="text"
           />
           <span>
@@ -78,10 +79,11 @@ exports[`CopyCourseModalComponent should snap when copying from other sessions 1
             Course Name:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-name"
             maxlength="80"
             placeholder="e.g. Software Engineering"
+            required=""
             type="text"
           />
           <span>
@@ -258,10 +260,11 @@ exports[`CopyCourseModalComponent should snap with default fields 1`] = `
             Course ID:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-id"
             maxlength="64"
             placeholder="e.g. CS3215-2013Semester1"
+            required=""
             type="text"
           />
           <span>
@@ -275,10 +278,11 @@ exports[`CopyCourseModalComponent should snap with default fields 1`] = `
             Course Name:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-name"
             maxlength="80"
             placeholder="e.g. Software Engineering"
+            required=""
             type="text"
           />
           <span>
@@ -439,10 +443,11 @@ exports[`CopyCourseModalComponent should snap with some course id 1`] = `
             Course ID:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-id"
             maxlength="64"
             placeholder="e.g. CS3215-2013Semester1"
+            required=""
             type="text"
           />
           <span>
@@ -456,10 +461,11 @@ exports[`CopyCourseModalComponent should snap with some course id 1`] = `
             Course Name:
           </label>
           <input
-            class="form-control ng-untouched ng-pristine ng-valid"
+            class="form-control ng-untouched ng-pristine ng-invalid"
             id="copy-course-name"
             maxlength="80"
             placeholder="e.g. Software Engineering"
+            required=""
             type="text"
           />
           <span>
